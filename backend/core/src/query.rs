@@ -1,13 +1,7 @@
 use ::entity::{post, post::Entity as Post};
 use sea_orm::*;
-
+use async_trait
 pub struct Query;
-
-trait CrudQuery {
-    pub async fn find_post_by_id(db: &DbConn, id: i32) -> Result<Option<post::Model>, DbErr> {
-        Post::find_by_id(id).one(db).await
-    }
-}
 
 impl Query {
     pub async fn find_post_by_id(db: &DbConn, id: i32) -> Result<Option<post::Model>, DbErr> {
