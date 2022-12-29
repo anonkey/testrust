@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  backend_db:
+    build:
+      context: ./postgres
+    ports:
+      - ${POSTGRES_PORT:?POSTGRES_PORT required}:5432
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+    networks:
+      pachou:
+        ipv4_address: ${POSTGRES_IP}
+  backend:
+    profiles: ['release']
+    command:
+      - cargo run
+    build:
+      context: ./backend
+    volumes:
+      - ./backend:/usr/src/backend
+    ports:
+      - ${BACKEND_PORT:?BACKEND_PORT required}:${BACKEND_PORT}
+    environment:
+      - PORT=${BACKEND_PORT}
+      - HOST=${BACKEND_HOST}
+    networks:
+      pachou:
+        ipv4_address: ${BACKEND_IP}
+
+networks:
+  pachou:
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.51.0/24"
