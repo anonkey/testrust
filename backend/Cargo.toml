@@ -6,7 +6,7 @@ edition = "2021"
 publish = false
 
 [workspace]
-members = [".", "api", "core", "entity", "migration", "crud_macro"]
+members = [".", "api", "core", "entity", "migration", "crud-macro"]
 
 [dependencies]
 pachou-backend-api = { path = "api" }

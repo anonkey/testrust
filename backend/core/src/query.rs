@@ -1,6 +1,5 @@
 use ::entity::{post, post::Entity as Post};
 use sea_orm::*;
-use async_trait
 pub struct Query;
 
 impl Query {

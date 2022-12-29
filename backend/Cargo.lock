@@ -853,7 +853,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "crud_macro"
+name = "crud-macro"
 version = "0.1.0"
 dependencies = [
  "quote",
